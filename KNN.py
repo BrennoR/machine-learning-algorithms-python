@@ -12,15 +12,15 @@ class KNearestNeighbors:
     Parameters
     ----------
     k : int
-        Number of neighbors
+        Number of neighbors.
 
     dist_metric : str, optional (default = 'euclidean')
         Distance metric used to calculate distances between neighbors.
         Possible values:
 
-            - 'euclidean' : Straight line distance between points
-            - 'manhattan' : Distances between points measured along axes at right angles
-            - 'chebyshev' : Maximum distance along any coordinate dimension
+            - 'euclidean' : Straight line distance between points.
+            - 'manhattan' : Distances between points measured along axes at right angles.
+            - 'chebyshev' : Maximum distance along any coordinate dimension.
 
     Examples
     -------
