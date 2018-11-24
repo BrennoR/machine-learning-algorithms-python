@@ -50,6 +50,9 @@ class KNearestNeighbors:
             self.p = 1
         elif dist_metric is 'chebyshev':
             self.p = np.inf
+        else:
+            self.p = 2
+            print('''{} is not a valid distance metric!\n** Euclidean distance was used **'''.format(dist_metric))
 
     def fit(self, X, y):
         self.X_train = np.array(X)
