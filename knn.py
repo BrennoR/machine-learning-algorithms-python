@@ -7,7 +7,7 @@ from collections import Counter
 
 class KNearestNeighbors:
     """
-    Simple K-Nearest Neighbors algorithm
+    Simple K-Nearest Neighbors algorithm.
 
     Parameters
     ----------
@@ -24,14 +24,14 @@ class KNearestNeighbors:
 
     Examples
     -------
-    from KNN import KNearestNeighbors
+    from knn import KNearestNeighbors
 
     X = [[1, 2], [3, 4], [2, 5], [-1, 9]]
     y = [0, 0, 1, 1]
 
-    kNN = KNearestNeighbors(2, dist_metric='manhattan')
-    kNN.fit(X, y)
-    labels = kNN.predict([[2, 1], [3, 7]])
+    knn = KNearestNeighbors(2, dist_metric='manhattan')
+    knn.fit(X, y)
+    labels = knn.predict([[2, 1], [3, 7]])
     print(labels)
 
     Notes
