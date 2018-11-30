@@ -42,19 +42,16 @@ class LinearRegression:
         pass
 
     def fit(self, X, y):
-        X = np.array(X)
-        y = np.array(y)
+        X, y = np.array(X), np.array(y)
         X = np.concatenate((np.ones((X.shape[0], 1)), X), axis=1)
+        self.weights = np.dot(np.linalg.inv(np.transpose(X).dot(X)).dot(np.transpose(X)), y)
 
-        self.pseudo_inverse = np.linalg.inv(np.transpose(X).dot(X)).dot(np.transpose(X))
-        self.w = np.dot(self.pseudo_inverse, y)
-
-        self.coefficients = self.w[1:]
-        self.intercept = self.w[0]
+        self.coefficients = self.weights[1:]
+        self.intercept = self.weights[0]
 
     def predict(self, X):
         X = np.array(X)
         X = np.concatenate((np.ones((X.shape[0], 1)), X), axis=1)
-        y_hat = np.dot(X, self.w)
+        y_hat = np.dot(X, self.weights)
 
         return y_hat
