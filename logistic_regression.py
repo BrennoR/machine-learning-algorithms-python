@@ -12,7 +12,7 @@ class LogisticRegression:
     Parameters
     ----------
     iterations : int, optional (default = 1000)
-        Number of iterations in gradient descent.
+        Number of iterations used in gradient descent.
 
     lr : float, optional (default = 0.01)
         Learning rate of the gradient descent optimizer.

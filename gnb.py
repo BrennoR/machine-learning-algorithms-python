@@ -2,23 +2,37 @@
 # Created on 12/13/18
 
 import numpy as np
-import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 
 
 class GaussianNaiveBayes:
     """
-    Simple logistic regression algorithm for binary classification.
+    Gaussian Naive Bayes algorithm implementation based off of Dr. Alvarez
+    code from CSC 461 at URI.
 
     Parameters
     ----------
     smoothing : float, optional (default = 1e-9)
-        Adds a fraction of the largest variance to each variance parameter.
+        Fraction of the largest variance from the features that
+        is added to all values in the variances array.
 
     Attributes
     -------
-    coefficients : array
-        Array containing the weights of the model.
+    epsilon : float
+        Value added to all values in the variances array. This
+        is equal to the smoothing parameter multiplied by the
+        largest variance.
+
+    labels : array
+        Array of the classes found in y.
+
+    means : array
+        Array containing the means of all features in all classes.
+
+    variances : array
+        Array containing the variances of all features in all classes.
+
+    priors : array
+        Array containing the prior probabilities of the classes.
 
     Examples
     -------
@@ -36,7 +50,7 @@ class GaussianNaiveBayes:
     -------
     Algorithm completely based off of Dr. Alvarez code shown in CSC 461
     at URI for the Gaussian Naive Bayes section of the course. Must
-    make some edits to the code stilL!
+    make some edits to the code still!
 
     """
 
@@ -60,14 +74,10 @@ class GaussianNaiveBayes:
         self.variances += self.epsilon
 
     def predict(self, X):
+        X = np.array(X)
         probabilities = np.zeros((self.n_classes, X.shape[0]))
         for i, j in np.ndenumerate(self.labels):
             probabilities[i, :] = np.log(self.priors[i])
             probabilities[i, :] -= (0.5 * np.sum(np.log(2 * np.pi * self.variances[i])))
             probabilities[i, :] -= (0.5 * np.sum((((X - self.means[i]) ** 2) / self.variances[i]), axis=1))
         return self.labels[np.argmax(probabilities, axis=0)]
-
-    @staticmethod
-    def gauss(mean, var, x):
-        prob = np.sum(np.log((1 / np.sqrt(2 * np.pi * var)) * np.exp((-(x - mean) ** 2) / (2 * var))))
-        return prob
